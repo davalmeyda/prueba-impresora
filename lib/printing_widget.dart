@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:proyecto_impresora/blue_print.dart';
 import 'package:esc_pos_utils/esc_pos_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
+import 'package:image/image.dart' as img;
 
 FlutterBlue flutterBlue = FlutterBlue.instance;
 
@@ -35,10 +38,13 @@ class _PrintingWidgetState extends State<PrintingWidget> {
     await device.connect();
     final gen = Generator(PaperSize.mm58, await CapabilityProfile.load());
     final printer = BluePrint();
-    printer.add(gen.qrcode('https://altospos.com'));
-    printer.add(gen.text('Hello'));
-    printer.add(gen.text('World', styles: const PosStyles(bold: true)));
-    printer.add(gen.feed(1));
+    // printer.add(gen.qrcode('https://altospos.com'));
+    // printer.add(gen.text('Hello'));
+    // printer.add(gen.text('World', styles: const PosStyles(bold: true)));
+    // printer.add(gen.feed(1));
+    img.Image? image =
+        img.decodeJpg(File('assets/boleta-prueba.png').readAsBytesSync());
+    printer.add(gen.image(image!));
     await printer.printData(device);
     device.disconnect();
   }

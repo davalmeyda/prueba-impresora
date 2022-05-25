@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.proyecto_impresora">
+	 	<uses-permission android:name="android.permission.BLUETOOTH" />  
+	 	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />  
+	 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> 
    <application
         android:label="proyecto_impresora"
         android:name="${applicationName}"
@@ -29,9 +32,6 @@
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
-            android:value="2" />
-				<uses-permission android:name="android.permission.BLUETOOTH" />  
-	 			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />  
-	 			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> 
-    </application>
+            android:value="2" />				
+    </application>		
 </manifest>
