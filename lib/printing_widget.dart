@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:proyecto_impresora/blue_print.dart';
 import 'package:esc_pos_utils/esc_pos_utils.dart';
 import 'package:flutter/material.dart';
@@ -42,8 +43,8 @@ class _PrintingWidgetState extends State<PrintingWidget> {
     // printer.add(gen.text('Hello'));
     // printer.add(gen.text('World', styles: const PosStyles(bold: true)));
     // printer.add(gen.feed(1));
-    img.Image? image =
-        img.decodeJpg(File('assets/boleta-prueba.png').readAsBytesSync());
+    final aaa = await rootBundle.load('assets/boleta-prueba.png');
+    img.Image? image = img.PngDecoder().decodeImage(aaa.buffer.asUint8List());
     printer.add(gen.image(image!));
     await printer.printData(device);
     device.disconnect();
