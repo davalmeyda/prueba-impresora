@@ -38,14 +38,98 @@ class _PrintingWidgetState extends State<PrintingWidget> {
   void printWithDevice(BluetoothDevice device) async {
     await device.connect();
     final gen = Generator(PaperSize.mm58, await CapabilityProfile.load());
+
     final printer = BluePrint();
-    // printer.add(gen.qrcode('20607455628|03|B001|00000041|0.00|150|2022-05-24|1|47813783|SZDI1gfdV+srVudW6w6dr36Ltf8='));
+    // printer.add(gen.text('Beyzon Corp. S.A.C.',
+    //     styles: PosStyles(align: PosAlign.center, bold: true)));
+    // printer.add(gen.text('RUC 20607455628',
+    //     styles: PosStyles(align: PosAlign.center, bold: true)));
+    // printer.add(gen.text(
+    //     'CALLE LOS GUAYABOS NRO. 489 COO. VILLA DEL MAR, EL AGUSTINO - LIMA - LIMA',
+    //     styles: PosStyles(align: PosAlign.center)));
+    // printer.add(gen.text('--------------------------------',
+    //     styles: PosStyles(align: PosAlign.center)));
+    printer.add(gen.text('BOLETA DE VENTA ELECTRONICA',
+        styles: PosStyles(bold: true, align: PosAlign.center)));
+    printer.add(gen.text('B001-00000036',
+        styles: PosStyles(bold: true, align: PosAlign.center)));
+    printer.add(gen.emptyLines(1));
+    printer.add(gen.row([
+      PosColumn(
+        text: 'NOMBRE:',
+        width: 5,
+        styles: PosStyles(bold: true),
+      ),
+      PosColumn(
+        text: 'DAVID MARTIN ALMEYDA SUCSO',
+        width: 7,
+        styles: PosStyles(bold: false),
+      )
+    ]));
+    printer.add(gen.row([
+      PosColumn(
+        text: 'DNI:',
+        width: 5,
+        styles: PosStyles(bold: true),
+      ),
+      PosColumn(
+        text: '47813783',
+        width: 7,
+        styles: PosStyles(bold: false),
+      )
+    ]));
+    printer.add(gen.row([
+      PosColumn(
+        text: 'EMISION:',
+        width: 5,
+        styles: PosStyles(bold: true),
+      ),
+      PosColumn(
+        text: '2022-05-24',
+        width: 7,
+        styles: PosStyles(bold: false),
+      )
+    ]));
+    printer.add(gen.row([
+      PosColumn(
+        text: 'MONEDA:',
+        width: 5,
+        styles: PosStyles(bold: true),
+      ),
+      PosColumn(
+        text: 'SOL (PEN)',
+        width: 7,
+        styles: PosStyles(bold: false),
+      )
+    ]));
+    printer.add(gen.row([
+      PosColumn(
+        text: 'OPERACION:',
+        width: 5,
+        styles: PosStyles(bold: true),
+      ),
+      PosColumn(
+        text: 'VENTAS NO DOMICILIADOS QUE NO CALIFICAN COMO EXPORTACION',
+        width: 7,
+        styles: PosStyles(bold: false),
+      )
+    ]));
+    printer.add(gen.cut());
+    // printer.add(gen.emptyLines(2));
+    // printer.add(gen.drawer());
+    // printer.add(gen.text('RUC 20607455628',
+    //     styles: PosStyles(align: PosAlign.center, bold: true)));
+    // printer.add(gen.qrcode(
+    //   '20607455628|03|B001|00000041|0.00|150|2022-05-24|1|47813783|SZDI1gfdV+srVudW6w6dr36Ltf8=',
+    //   size: QRSize.Size5,
+    //   align: PosAlign.center,
+    // ));
     // printer.add(gen.text('Hello'));
     // printer.add(gen.text('World', styles: const PosStyles(bold: true)));
     // printer.add(gen.feed(1));
     final aaa = await rootBundle.load('assets/boleta-prueba.png');
     img.Image? image = img.PngDecoder().decodeImage(aaa.buffer.asUint8List());
-    printer.add(gen.image(image!));
+    // printer.add(gen.image(image!));
     await printer.printData(device);
     device.disconnect();
   }
