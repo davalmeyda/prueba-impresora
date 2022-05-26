@@ -40,15 +40,15 @@ class _PrintingWidgetState extends State<PrintingWidget> {
     final gen = Generator(PaperSize.mm58, await CapabilityProfile.load());
 
     final printer = BluePrint();
-    // printer.add(gen.text('Beyzon Corp. S.A.C.',
-    //     styles: PosStyles(align: PosAlign.center, bold: true)));
-    // printer.add(gen.text('RUC 20607455628',
-    //     styles: PosStyles(align: PosAlign.center, bold: true)));
-    // printer.add(gen.text(
-    //     'CALLE LOS GUAYABOS NRO. 489 COO. VILLA DEL MAR, EL AGUSTINO - LIMA - LIMA',
-    //     styles: PosStyles(align: PosAlign.center)));
-    // printer.add(gen.text('--------------------------------',
-    //     styles: PosStyles(align: PosAlign.center)));
+    printer.add(gen.text('Beyzon Corp. S.A.C.',
+        styles: PosStyles(align: PosAlign.center, bold: true)));
+    printer.add(gen.text('RUC 20607455628',
+        styles: PosStyles(align: PosAlign.center, bold: true)));
+    printer.add(gen.text(
+        'CALLE LOS GUAYABOS NRO. 489 COO. VILLA DEL MAR, EL AGUSTINO - LIMA - LIMA',
+        styles: PosStyles(align: PosAlign.center)));
+    printer.add(gen.text('--------------------------------',
+        styles: PosStyles(align: PosAlign.center)));
     printer.add(gen.text('BOLETA DE VENTA ELECTRONICA',
         styles: PosStyles(bold: true, align: PosAlign.center)));
     printer.add(gen.text('B001-00000036',
@@ -61,7 +61,19 @@ class _PrintingWidgetState extends State<PrintingWidget> {
         styles: PosStyles(bold: true),
       ),
       PosColumn(
-        text: 'DAVID MARTIN ALMEYDA SUCSO',
+        text: 'DAVID MARTIN',
+        width: 7,
+        styles: PosStyles(bold: false),
+      )
+    ]));
+    printer.add(gen.row([
+      PosColumn(
+        text: '',
+        width: 5,
+        styles: PosStyles(bold: true),
+      ),
+      PosColumn(
+        text: 'ALMEYDA SUCSO',
         width: 7,
         styles: PosStyles(bold: false),
       )
@@ -116,22 +128,25 @@ class _PrintingWidgetState extends State<PrintingWidget> {
     ]));
     printer.add(gen.text('--------------------------------',
         styles: PosStyles(align: PosAlign.center)));
-    printer.add(gen.text('DESCRIPCION'));
+    printer.add(gen.text(
+      'DESCRIPCION',
+      styles: PosStyles(bold: true),
+    ));
     printer.add(gen.row([
       PosColumn(
         text: 'CANT',
         width: 4,
-        styles: PosStyles(bold: true),
+        styles: PosStyles(bold: false, align: PosAlign.right),
       ),
       PosColumn(
         text: 'P.UNIT',
         width: 4,
-        styles: PosStyles(bold: true),
+        styles: PosStyles(bold: false, align: PosAlign.right),
       ),
       PosColumn(
         text: 'P.TOTAL',
         width: 4,
-        styles: PosStyles(bold: true),
+        styles: PosStyles(bold: false, align: PosAlign.right),
       ),
     ]));
     printer.add(gen.text('--------------------------------',
@@ -141,19 +156,20 @@ class _PrintingWidgetState extends State<PrintingWidget> {
       PosColumn(
         text: '1 UNIDAD',
         width: 4,
-        styles: PosStyles(bold: false),
+        styles: PosStyles(bold: false, align: PosAlign.right),
       ),
       PosColumn(
         text: '3.000',
         width: 4,
-        styles: PosStyles(bold: false),
+        styles: PosStyles(bold: false, align: PosAlign.right),
       ),
       PosColumn(
         text: '3.00',
         width: 4,
-        styles: PosStyles(bold: false),
+        styles: PosStyles(bold: false, align: PosAlign.right),
       ),
     ]));
+    printer.add(gen.feed(1));
     printer.add(gen.row([
       PosColumn(
         text: 'OP. INAFECTA',
@@ -163,7 +179,7 @@ class _PrintingWidgetState extends State<PrintingWidget> {
       PosColumn(
         text: '3.000',
         width: 4,
-        styles: PosStyles(bold: false),
+        styles: PosStyles(bold: false, align: PosAlign.right),
       ),
     ]));
     printer.add(gen.row([
@@ -175,7 +191,7 @@ class _PrintingWidgetState extends State<PrintingWidget> {
       PosColumn(
         text: '-',
         width: 4,
-        styles: PosStyles(bold: false),
+        styles: PosStyles(bold: false, align: PosAlign.right),
       ),
     ]));
     printer.add(gen.text('--------------------------------',
@@ -192,11 +208,15 @@ class _PrintingWidgetState extends State<PrintingWidget> {
     // printer.add(gen.drawer());
     // printer.add(gen.text('RUC 20607455628',
     //     styles: PosStyles(align: PosAlign.center, bold: true)));
+    printer.add(gen.emptyLines(1));
     printer.add(gen.qrcode(
       '20607455628|03|B001|00000041|0.00|150|2022-05-24|1|47813783|SZDI1gfdV+srVudW6w6dr36Ltf8=',
       size: QRSize.Size5,
       align: PosAlign.center,
     ));
+    printer.add(gen.emptyLines(1));
+    printer.add(gen.text('kT3Lagw7TAawAgNAUcET7vP2JyY=',
+        styles: PosStyles(align: PosAlign.center)));
     // printer.add(gen.text('Hello'));
     // printer.add(gen.text('World', styles: const PosStyles(bold: true)));
     // printer.add(gen.feed(1));
