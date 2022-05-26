@@ -114,16 +114,89 @@ class _PrintingWidgetState extends State<PrintingWidget> {
         styles: PosStyles(bold: false),
       )
     ]));
-    printer.add(gen.cut());
+    printer.add(gen.text('--------------------------------',
+        styles: PosStyles(align: PosAlign.center)));
+    printer.add(gen.text('DESCRIPCION'));
+    printer.add(gen.row([
+      PosColumn(
+        text: 'CANT',
+        width: 4,
+        styles: PosStyles(bold: true),
+      ),
+      PosColumn(
+        text: 'P.UNIT',
+        width: 4,
+        styles: PosStyles(bold: true),
+      ),
+      PosColumn(
+        text: 'P.TOTAL',
+        width: 4,
+        styles: PosStyles(bold: true),
+      ),
+    ]));
+    printer.add(gen.text('--------------------------------',
+        styles: PosStyles(align: PosAlign.center)));
+    printer.add(gen.text('VENTA DE 0.8 USD'));
+    printer.add(gen.row([
+      PosColumn(
+        text: '1 UNIDAD',
+        width: 4,
+        styles: PosStyles(bold: false),
+      ),
+      PosColumn(
+        text: '3.000',
+        width: 4,
+        styles: PosStyles(bold: false),
+      ),
+      PosColumn(
+        text: '3.00',
+        width: 4,
+        styles: PosStyles(bold: false),
+      ),
+    ]));
+    printer.add(gen.row([
+      PosColumn(
+        text: 'OP. INAFECTA',
+        width: 8,
+        styles: PosStyles(bold: true),
+      ),
+      PosColumn(
+        text: '3.000',
+        width: 4,
+        styles: PosStyles(bold: false),
+      ),
+    ]));
+    printer.add(gen.row([
+      PosColumn(
+        text: 'IGV',
+        width: 8,
+        styles: PosStyles(bold: true),
+      ),
+      PosColumn(
+        text: '-',
+        width: 4,
+        styles: PosStyles(bold: false),
+      ),
+    ]));
+    printer.add(gen.text('--------------------------------',
+        styles: PosStyles(align: PosAlign.center)));
+    printer.add(gen.text('IMPORTE TOTAL S/. 3.00',
+        styles: PosStyles(align: PosAlign.right, bold: true)));
+    printer.add(gen.text('--------------------------------',
+        styles: PosStyles(align: PosAlign.center)));
+
+    printer.add(gen.text(
+        'Representacion Impresa de la BOLETA DE VENTA ELECTRONICA',
+        styles: PosStyles(align: PosAlign.center)));
     // printer.add(gen.emptyLines(2));
     // printer.add(gen.drawer());
     // printer.add(gen.text('RUC 20607455628',
     //     styles: PosStyles(align: PosAlign.center, bold: true)));
-    // printer.add(gen.qrcode(
-    //   '20607455628|03|B001|00000041|0.00|150|2022-05-24|1|47813783|SZDI1gfdV+srVudW6w6dr36Ltf8=',
-    //   size: QRSize.Size5,
-    //   align: PosAlign.center,
-    // ));
+    printer.add(gen.qrcode(
+      '20607455628|03|B001|00000041|0.00|150|2022-05-24|1|47813783|SZDI1gfdV+srVudW6w6dr36Ltf8=',
+      size: QRSize.Size5,
+      align: PosAlign.center,
+    ));
     // printer.add(gen.text('Hello'));
     // printer.add(gen.text('World', styles: const PosStyles(bold: true)));
     // printer.add(gen.feed(1));
